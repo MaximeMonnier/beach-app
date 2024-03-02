@@ -1,12 +1,17 @@
 import { useState } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import './styles/main.scss';
+
+import Login_Register from './pages/Login_Register';
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <>
-      <h1>ici routing</h1>
-    </>
+    <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Login_Register />} />
+    </Routes>
+  </BrowserRouter>
   )
 }
 
