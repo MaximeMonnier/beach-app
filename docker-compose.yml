@@ -1,0 +1,56 @@
+version: '3.8'
+services:
+  # Service pour le frontend React
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+    command: npm start
+
+  # Service pour le backend Laravel
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    volumes:
+      - ./backend:/var/www/html
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_NAME=Laravel
+      - APP_ENV=local
+      - APP_KEY=
+      - APP_DEBUG=true
+      - APP_URL=http://localhost
+      - LOG_CHANNEL=stack
+      - DB_CONNECTION=mysql
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_DATABASE=homestead
+      - DB_USERNAME=homestead
+      - DB_PASSWORD=secret
+    depends_on:
+      - db
+
+  # Service MySQL pour Laravel
+  db:
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: homestead
+      MYSQL_USER: homestead
+      MYSQL_PASSWORD: secret
+    ports:
+      - "3306:3306"
+
+volumes:
+  db_data:

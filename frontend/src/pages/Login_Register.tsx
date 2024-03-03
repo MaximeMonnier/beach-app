@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
+import Register from '../components/Register'
+import Connexion from '../components/Connexion'
 
 export class Login_Register extends Component {
   render() {
     return (
-      <div>
-        pages de connexion ou inscrption
+      <div className='container-form'>
+        <Register />
+        <div className="bar"></div>
+        <Connexion/>
       </div>
     )
   }

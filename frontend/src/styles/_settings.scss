@@ -11,10 +11,14 @@ $color-2: #0b2a24;
 $color-3: #f9e6c6;
 
 //mixin
-@mixin flexCenter {
+@mixin CenterContent {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+@mixin flexCenter {
+    display: flex;
+    justify-content: center;
 }
 
 // sugegstion de mixin pour le responsive, les btn, les hover sur btn, card etc...
