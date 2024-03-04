@@ -1,9 +1,7 @@
-import React, { Component } from 'react'
 import Register from '../components/Register'
 import Connexion from '../components/Connexion'
 
-export class Login_Register extends Component {
-  render() {
+function Login_Register() {
     return (
       <div className='container-form'>
         <Register />
@@ -11,7 +9,6 @@ export class Login_Register extends Component {
         <Connexion/>
       </div>
     )
-  }
 }
 
 export default Login_Register
