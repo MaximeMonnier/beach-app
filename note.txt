@@ -1,3 +1,8 @@
+terminer le fichier docker 
+
+
+connexion a la base de donnes ok faire les migration  et etablir la conneixon 
+
 pour commencer et faire focntionne rles donnes faire la page de connexion avec enregistrement de l'utilisateur, fazire focntionner l'api et les retoru d'erreur pour plus de faciliter par la suite 
 
 -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
