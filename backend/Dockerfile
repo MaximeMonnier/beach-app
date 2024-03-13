@@ -3,8 +3,12 @@ FROM webdevops/php-nginx:8.3-alpine
 # Installation des dépendances nécessaires
 RUN apk add --no-cache oniguruma-dev libxml2-dev nodejs npm
 
+# Installation des dépendances nécessaires
+RUN apk add --no-cache oniguruma-dev libxml2-dev nodejs npm mysql-client
+
 # Installation de PHP extensions
 RUN docker-php-ext-install bcmath ctype fileinfo mbstring pdo_mysql xml
+
 
 # Installation de Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -27,6 +31,8 @@ RUN if [ ! -f .env ]; then cp .env.example .env; fi
 
 # Générer la clé de l'application Laravel (si nécessaire)
 RUN php artisan key:generate --no-interaction --force
+
+RUN php artisan migrate
 
 # Installer les dépendances npm et compiler les assets (si nécessaire)
 RUN npm install

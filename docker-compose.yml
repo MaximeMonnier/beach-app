@@ -5,7 +5,6 @@ services:
       context: ./frontend
     volumes:
       - ./frontend:/app # Montage du code source pour le développement en direct
-      - /app/node_modules # Exclure node_modules du montage
     ports:
       - "5173:5173" # Assurez-vous que cela correspond au port exposé dans votre Dockerfile frontend
     networks:
