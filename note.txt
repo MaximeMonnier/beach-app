@@ -1,8 +1,15 @@
-tester animation avec gsap, idee faire apparaitre et disparaitre les formualire avec animaiton en focntion de son choix avec de l'annimation gnyh
+cmd importante => docker exec -it leubeach-backend-1 php artisan migrate
 
-connexion a la base de donnes ok faire les migration  et etablir la conneixon 
+pour terminer les migration, je doit faire les table simplement puis faire de nouiveau fichier de migrzation qui ajoute mes cle etrangere 
+
+
+comprend et faire me systeme de connexion inscription de laravel, etablir les niveau de permission en fonction de 
+
+apporter tailwind avec les cdn plus simple 
 
 pour commencer et faire focntionne rles donnes faire la page de connexion avec enregistrement de l'utilisateur, fazire focntionner l'api et les retoru d'erreur pour plus de faciliter par la suite 
+
+une fois connexion inscription fait avec a pi er retour de view avec react, tester comme vue en cour, implementer des test pertinet sur le front avec la page de connexion et l'accueil et les test coté back implementer les test cote back egalement 
 
 -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 FRONTED
@@ -94,11 +101,6 @@ Création de bases de données : Utilisez les migrations pour définir la struct
 Peuplement de la base de données : Les seeders peuvent être utilisés pour peupler la base de données avec des données de test. Créez des seeders avec php artisan make:seeder YourSeeder et exécutez-les avec php artisan db:seed.
 
 Ces étapes constituent une base solide pour démarrer le développement de votre application Laravel sous forme d'API. Assurez-vous de consulter la documentation officielle de Laravel pour des détails plus spécifiques sur chaque composant mentionné.
--_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
-DOCKER
--_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
-
-faire le docker compose, pesner a ajouter toute les dependance
 
 
 
