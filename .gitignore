@@ -1,0 +1,5 @@
+# Ignorer le fichier .env
+.env
+
+# Ignorer le fichier shema-bdd.png
+shema-bdd.png
