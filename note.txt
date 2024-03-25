@@ -1,4 +1,4 @@
-tester animation avec gsap, idee faire apparaitre et disparaitre les formualire avec animaiton en focntion de son choix avec de l'annimation
+tester animation avec gsap, idee faire apparaitre et disparaitre les formualire avec animaiton en focntion de son choix avec de l'annimation gnyh
 
 connexion a la base de donnes ok faire les migration  et etablir la conneixon 
 
