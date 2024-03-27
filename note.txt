@@ -1,7 +1,4 @@
-cmd importante => docker exec -it leubeach-backend-1 php artisan migrate
-
-pour terminer les migration, je doit faire les table simplement puis faire de nouiveau fichier de migrzation qui ajoute mes cle etrangere 
-
+docker exec -it leubeach-backend-1 php artisan migrate
 
 comprend et faire me systeme de connexion inscription de laravel, etablir les niveau de permission en fonction de 
 
@@ -10,6 +7,8 @@ apporter tailwind avec les cdn plus simple
 pour commencer et faire focntionne rles donnes faire la page de connexion avec enregistrement de l'utilisateur, fazire focntionner l'api et les retoru d'erreur pour plus de faciliter par la suite 
 
 une fois connexion inscription fait avec a pi er retour de view avec react, tester comme vue en cour, implementer des test pertinet sur le front avec la page de connexion et l'accueil et les test coté back implementer les test cote back egalement 
+
+integrer le deploiement continue avec git hub actoi ou autre 
 
 -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 FRONTED
