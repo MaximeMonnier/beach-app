@@ -1,4 +1,4 @@
-cmd importante => docker exec -it leubeach-backend-1 php artisan migrate
+docker exec -it leubeach-backend-1 php artisan migrate
 
 comprend et faire me systeme de connexion inscription de laravel, etablir les niveau de permission en fonction de 
 
