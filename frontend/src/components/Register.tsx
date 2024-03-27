@@ -1,5 +1,15 @@
 import React, { useState } from "react";
+import axios from "axios";
 import Logo from "../assets/logo_leubeach.webp";
+
+// Extrait le token CSRF du cookie et le retourne
+function getCsrfToken() {
+  const csrfToken = document.cookie
+    .split("; ")
+    .find((row) => row.startsWith("XSRF-TOKEN="))
+    ?.split("=")[1];
+  return csrfToken ? decodeURIComponent(csrfToken) : null;
+}
 
 function Register() {
   const [firstName, setFirstName] = useState("");
@@ -19,29 +29,42 @@ function Register() {
       dob: dob,
     };
 
+    console.log("Tentative d'envoi de données d'utilisateur:", userData);
+
     try {
-      const response = await fetch("http://localhost:8000/api/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
-      });
+      // Configurer Axios pour inclure les cookies dans chaque requête (nécessaire pour Sanctum)
+      axios.defaults.withCredentials = true;
 
-      const contentType = response.headers.get("content-type");
-      if (
-        !response.ok ||
-        !contentType ||
-        !contentType.includes("application/json")
-      ) {
-        throw new Error("Réponse non JSON ou erreur de requête");
-      }
+      console.log("Récupération du jeton CSRF avec Sanctum...");
+      // Récupération du jeton CSRF
+      await axios.get("http://localhost:8000/sanctum/csrf-cookie");
 
-      const result = await response.json();
+      console.log(
+        "Jeton CSRF récupéré avec succès. Envoi de la requête d'inscription..."
+      );
 
-      console.log(result);
+      // Extrait le token CSRF du cookie
+      const csrfToken = getCsrfToken();
+
+      // Envoi de la requête d'inscription avec le token CSRF dans les en-têtes
+      const response = await axios.post(
+        "http://localhost:8000/api/register",
+        userData,
+        {
+          headers: {
+            "X-XSRF-TOKEN": csrfToken,
+          },
+        }
+      );
+
+      console.log("Réponse d'inscription reçue:", response);
+      console.log("Résultat de l'inscription:", response.data);
     } catch (error) {
-      console.error(error);
+      console.error("Erreur lors de l'inscription:", error);
+      // En cas d'erreur, Axios encapsule la réponse dans `error.response`
+      if (error.response) {
+        console.log("Réponse d'erreur:", error.response.data);
+      }
     }
   };
 
