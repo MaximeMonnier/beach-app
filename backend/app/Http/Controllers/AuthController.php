@@ -4,11 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
 use App\Models\User;
 
 class AuthController extends Controller
 {
+
+    public function index()
+    {
+        return response()->json(['message' => 'API Test successful']);
+    }
     public function register(Request $request)
     {
         $request->validate([
@@ -17,8 +21,6 @@ class AuthController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
             'dob' => 'required|date',
-            // 'permission_id' => 'nullable|integer|exists:permissions,id',
-            // 'users_type_id' => 'nullable|integer|exists:users_types,id',
         ]);
 
         $user = User::create([
@@ -27,19 +29,31 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'dob' => $request->dob,
-            // 'permission_id' => $request->permission_id,
-            // 'users_type_id' => $request->users_type_id,
-            // 'email_verified_at' => now(), // Décommentez cette ligne si vous voulez vérifier l'email dès l'inscription
         ]);
 
-        // \Log::info($request->all());
-
-        // Retournez une réponse ou un token selon votre besoin
         return response()->json(['message' => 'User successfully registered', 'user' => $user], 201);
     }
 
-    public function index()
+    public function login(Request $request)
     {
-        return response()->json(['message' => 'API Test successful']);
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        if (!auth()->attempt($request->only('email', 'password'))) {
+            return response()->json(['message' => 'Invalid credentials'], 401);
+        }
+
+        $user = auth()->user();
+
+        // Créer un token de Sanctum pour l'utilisateur connecté
+        $token = $user->createToken('authToken')->plainTextToken;
+
+        return response()->json([
+            'message' => 'Login successful',
+            'user' => $user,
+            'token' => $token,
+        ]);
     }
 }

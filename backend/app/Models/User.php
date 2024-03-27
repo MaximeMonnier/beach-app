@@ -6,6 +6,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
+
 
 use App\Models\permissionUsers;
 use App\Models\usersType;
@@ -13,7 +15,8 @@ use App\Models\usersType;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasApiTokens, Notifiable, HasFactory;
+
 
     /**
      * Les attributs qui sont assignables en masse.
