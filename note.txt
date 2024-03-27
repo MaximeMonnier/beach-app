@@ -10,9 +10,13 @@ une fois connexion inscription fait avec a pi er retour de view avec react, test
 
 integrer le deploiement continue avec git hub actoi ou autre 
 
+commencer a faire le changement de theme, bien comprendre comment cela marche pour pour voir l'implementer partout facilement
+
+regarder si facile de changer de langue 
+
 -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 FRONTED
--_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
 implementer un theme dark
 
@@ -35,7 +39,7 @@ featurs:
 
 Note:
 
-essayer de faire de l'annimation avec G-sap
+essayer de faire de l'annimation avec G-sap (ça pour le moment tql) 
 
 
 -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
@@ -65,6 +69,9 @@ cree une page pour ajouter et afficher les association
 faire pareil pour les evenement en correclation averc les asso etc
 
 page de blog
+
+page de météo api connecter avec windy ? 
+
 
 -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 STRUCTURE DE BASE POUR API
