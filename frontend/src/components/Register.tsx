@@ -10,6 +10,7 @@ function Register() {
   const [familyName, setFamilyName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [dob, setDob] = useState("");
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
@@ -18,6 +19,13 @@ function Register() {
     e.preventDefault();
     setIsSubmitting(true);
     setErrors({});
+
+    // Vérification que les mots de passe correspondent
+    if (password !== confirmPassword) {
+      setErrors({ form: "Les mots de passe ne correspondent pas." });
+      setIsSubmitting(false);
+      return;
+    }
 
     const userData = {
       first_name: firstName,
@@ -42,16 +50,15 @@ function Register() {
         }
       );
 
-      console.log( "le token est la =>" + response.data.token);
-      
+      console.log("le token est la =>" + response.data.token);
+
       localStorage.setItem("token", response.data.token);
       console.log("Token stocké dans localStorage");
-      
 
       console.log("Réponse d'inscription reçue:", response);
       console.log("Résultat de l'inscription:", response.data);
-      navigate('accueil');
-      
+      navigate("accueil");
+
       setIsSubmitting(false);
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
@@ -137,6 +144,20 @@ function Register() {
                   />
                   {errors.password && (
                     <div className="error-message">{errors.password}</div>
+                  )}
+                </div>
+
+                <div className="container-input">
+                  <label>Confirmer le mot de passe</label>
+                  <input
+                    type="password"
+                    placeholder="Confirmez votre mot de passe"
+                    name="confirmPassword"
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    required
+                  />
+                   {errors.confirmPassword && (
+                    <div className="error-message">{errors.confirmPassword}</div>
                   )}
                 </div>
 
