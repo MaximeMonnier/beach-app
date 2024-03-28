@@ -1,20 +1,23 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Logo from "../assets/logo_leubeach.webp";
-import {getCsrfToken} from '../utils/getCsrfToken';
-
-//decode le token csrf voir le fichier
-getCsrfToken()
+import { useNavigate } from "react-router-dom";
+import { getCsrfToken } from "../utils/getCsrfToken";
 
 function Register() {
+  const navigate = useNavigate();
   const [firstName, setFirstName] = useState<string>("");
   const [familyName, setFamilyName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string | null>("");
+  const [password, setPassword] = useState<string>("");
   const [dob, setDob] = useState("");
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setErrors({});
 
     const userData = {
       first_name: firstName,
@@ -24,24 +27,11 @@ function Register() {
       dob: dob,
     };
 
-    console.log("Tentative d'envoi de données d'utilisateur:", userData);
-
     try {
-      // Configurer Axios pour inclure les cookies dans chaque requête (nécessaire pour Sanctum)
       axios.defaults.withCredentials = true;
-
-      console.log("Récupération du jeton CSRF avec Sanctum...");
-      // Récupération du jeton CSRF
       await axios.get("http://localhost:8000/sanctum/csrf-cookie");
-
-      console.log(
-        "Jeton CSRF récupéré avec succès. Envoi de la requête d'inscription..."
-      );
-
-      // Extrait le token CSRF du cookie
       const csrfToken = getCsrfToken();
 
-      // Envoi de la requête d'inscription avec le token CSRF dans les en-têtes
       const response = await axios.post(
         "http://localhost:8000/api/register",
         userData,
@@ -52,13 +42,29 @@ function Register() {
         }
       );
 
+      console.log( "le token est la =>" + response.data.token);
+      
+      localStorage.setItem("token", response.data.token);
+      console.log("Token stocké dans localStorage");
+      
+
       console.log("Réponse d'inscription reçue:", response);
       console.log("Résultat de l'inscription:", response.data);
+      navigate('accueil');
+      
+      setIsSubmitting(false);
     } catch (error) {
-      console.error("Erreur lors de l'inscription:", error);
       if (axios.isAxiosError(error) && error.response) {
-        console.log("Réponse d'erreur:", error.response.data);
+        // Supposons que l'API renvoie des erreurs dans error.response.data.errors
+        setErrors(
+          error.response.data.errors || {
+            form: "Une erreur inconnue est survenue.",
+          }
+        );
+      } else {
+        setErrors({ form: "Problème de connexion ou erreur serveur." });
       }
+      setIsSubmitting(false); // Réactive le bouton en cas d'erreur
     }
   };
 
@@ -74,6 +80,8 @@ function Register() {
               <h1 className="title-register">Inscription</h1>
             </div>
 
+            {errors.form && <div className="error-message">{errors.form}</div>}
+
             <div className="container-form-register">
               <form onSubmit={handleSubmit}>
                 <div className="container-input">
@@ -85,6 +93,9 @@ function Register() {
                     onChange={(e) => setFamilyName(e.target.value)}
                     required
                   />
+                  {errors.familly_name && (
+                    <div className="error-message">{errors.familly_name}</div>
+                  )}
                 </div>
 
                 <div className="container-input">
@@ -96,6 +107,9 @@ function Register() {
                     onChange={(e) => setFirstName(e.target.value)}
                     required
                   />
+                  {errors.first_name && (
+                    <div className="error-message">{errors.first_name}</div>
+                  )}
                 </div>
 
                 <div className="container-input">
@@ -107,6 +121,9 @@ function Register() {
                     onChange={(e) => setEmail(e.target.value)}
                     required
                   />
+                  {errors.email && (
+                    <div className="error-message">{errors.email}</div>
+                  )}
                 </div>
 
                 <div className="container-input">
@@ -118,6 +135,9 @@ function Register() {
                     onChange={(e) => setPassword(e.target.value)}
                     required
                   />
+                  {errors.password && (
+                    <div className="error-message">{errors.password}</div>
+                  )}
                 </div>
 
                 <div className="container-input">
@@ -128,10 +148,15 @@ function Register() {
                     required
                     onChange={(e) => setDob(e.target.value)}
                   />
+                  {errors.dob && (
+                    <div className="error-message">{errors.dob}</div>
+                  )}
                 </div>
 
                 <div className="container-register-btn">
-                  <button type="submit">S'inscrire</button>
+                  <button type="submit" disabled={isSubmitting}>
+                    S'inscrire
+                  </button>
                 </div>
               </form>
             </div>

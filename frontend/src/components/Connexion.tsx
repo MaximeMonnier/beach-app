@@ -2,10 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Logo from "../assets/logo_leubeach.webp";
 import { useNavigate } from "react-router-dom";
-import {getCsrfToken} from '../utils/getCsrfToken';
-
-//decode le token voir le file
-getCsrfToken()
+import { getCsrfToken } from '../utils/getCsrfToken';
 
 const Connexion: React.FC = () => {
   const navigate = useNavigate();
@@ -17,10 +14,10 @@ const Connexion: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    try {
-      // S'assurer que les cookies, y compris le cookie CSRF, sont envoyés avec la requête
-      axios.defaults.withCredentials = true;
+    // S'assurer que les cookies, y compris le cookie CSRF, sont envoyés avec la requête
+    axios.defaults.withCredentials = true;
 
+    try {
       // Récupérer le cookie CSRF avant d'envoyer la requête de connexion
       await axios.get("http://localhost:8000/sanctum/csrf-cookie");
 
@@ -37,15 +34,15 @@ const Connexion: React.FC = () => {
           },
         }
       );
-
-      console.log("Réponse de connexion:", response.data);
       localStorage.setItem("token", response.data.token);
-      setErrorMessage(null);
-      navigate('/accueil')
+      navigate('/accueil');
     } catch (error) {
+      // Gestion précise des erreurs retournées par Axios
       if (axios.isAxiosError(error) && error.response) {
-        setErrorMessage("Erreur lors de la connexion : " + error.response.data.message);
+        // Adapter le message d'erreur en fonction de la réponse du serveur
+        setErrorMessage("Identifiant incorrecte");
       } else {
+        // Gérer les autres types d'erreurs (réseau, etc.)
         setErrorMessage("Erreur lors de la connexion.");
       }
     }
@@ -62,7 +59,6 @@ const Connexion: React.FC = () => {
             <div className="container-title">
               <h1 className="title-connexion">Connexion</h1>
             </div>
-
             <div className="container-form-connexion">
               <form onSubmit={handleSubmit}>
                 <div className="container-input">
@@ -75,7 +71,6 @@ const Connexion: React.FC = () => {
                     required
                   />
                 </div>
-
                 <div className="container-input">
                   <label>Mot de passe</label>
                   <input
@@ -86,11 +81,7 @@ const Connexion: React.FC = () => {
                     required
                   />
                 </div>
-
-                {errorMessage && (
-                  <div className="error-message">{errorMessage}</div>
-                )}
-
+                {errorMessage && <div className="error-message">{errorMessage}</div>}
                 <div className="container-connexion-btn">
                   <button type="submit">Connexion</button>
                 </div>

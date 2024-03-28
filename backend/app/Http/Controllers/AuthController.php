@@ -31,8 +31,17 @@ class AuthController extends Controller
             'dob' => $request->dob,
         ]);
 
-        return response()->json(['message' => 'User successfully registered', 'user' => $user], 201);
+        // Créer un token de Sanctum pour l'utilisateur nouvellement enregistré
+        $token = $user->createToken('authToken')->plainTextToken;
+
+        // Renvoyer les données de l'utilisateur et le token pour une connexion automatique
+        return response()->json([
+            'message' => 'User successfully registered',
+            'user' => $user,
+            'token' => $token,
+        ], 201);
     }
+
 
     public function login(Request $request)
     {
