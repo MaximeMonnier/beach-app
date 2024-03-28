@@ -3,7 +3,7 @@ import axios from "axios";
 import Logo from "../assets/logo_leubeach.webp";
 import {getCsrfToken} from '../utils/getCsrfToken';
 
-//decode le token voir le file
+//decode le token csrf voir le fichier
 getCsrfToken()
 
 function Register() {
@@ -56,7 +56,6 @@ function Register() {
       console.log("Résultat de l'inscription:", response.data);
     } catch (error) {
       console.error("Erreur lors de l'inscription:", error);
-      // En cas d'erreur, Axios encapsule la réponse dans `error.response`
       if (axios.isAxiosError(error) && error.response) {
         console.log("Réponse d'erreur:", error.response.data);
       }

@@ -8,7 +8,7 @@ import {getCsrfToken} from '../utils/getCsrfToken';
 getCsrfToken()
 
 const Connexion: React.FC = () => {
-  const navigate = useNavigate(); // Créez une instance de useNavigate
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
