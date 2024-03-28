@@ -12,14 +12,13 @@ function getCsrfToken() {
 }
 
 function Register() {
-  
-  const [firstName, setFirstName] = useState("");
-  const [familyName, setFamilyName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState<string>("");
+  const [familyName, setFamilyName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string | null>("");
   const [dob, setDob] = useState("");
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const userData = {
@@ -63,7 +62,7 @@ function Register() {
     } catch (error) {
       console.error("Erreur lors de l'inscription:", error);
       // En cas d'erreur, Axios encapsule la réponse dans `error.response`
-      if (error.response) {
+      if (axios.isAxiosError(error) && error.response) {
         console.log("Réponse d'erreur:", error.response.data);
       }
     }

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Logo from "../assets/logo_leubeach.webp";
-import { useNavigate } from "react-router-dom"; // Importez useNavigate
+import { useNavigate } from "react-router-dom";
 
 // Cette fonction reste inchangée, elle extrait le token CSRF du cookie
 function getCsrfToken() {
@@ -48,10 +48,8 @@ const Connexion: React.FC = () => {
       setErrorMessage(null);
       navigate('/accueil')
     } catch (error) {
-      if (error.response) {
-        setErrorMessage(
-          "Erreur lors de la connexion : " + error.response.data.message
-        );
+      if (axios.isAxiosError(error) && error.response) {
+        setErrorMessage("Erreur lors de la connexion : " + error.response.data.message);
       } else {
         setErrorMessage("Erreur lors de la connexion.");
       }
