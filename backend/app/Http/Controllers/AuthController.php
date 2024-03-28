@@ -48,6 +48,7 @@ class AuthController extends Controller
         $user = auth()->user();
 
         // Créer un token de Sanctum pour l'utilisateur connecté
+        //intelephense ne reconnait pas createToken donc souligne en rouge mais le code marche
         $token = $user->createToken('authToken')->plainTextToken;
 
         return response()->json([

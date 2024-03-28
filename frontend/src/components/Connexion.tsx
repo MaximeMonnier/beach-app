@@ -1,6 +1,63 @@
+import React, { useState } from "react";
+import axios from "axios";
 import Logo from "../assets/logo_leubeach.webp";
+import { useNavigate } from "react-router-dom"; // Importez useNavigate
 
-function Connexion() {
+// Cette fonction reste inchangée, elle extrait le token CSRF du cookie
+function getCsrfToken() {
+  const csrfToken = document.cookie
+    .split("; ")
+    .find((row) => row.startsWith("XSRF-TOKEN="))
+    ?.split("=")[1];
+  return csrfToken ? decodeURIComponent(csrfToken) : null;
+}
+
+const Connexion: React.FC = () => {
+  const navigate = useNavigate(); // Créez une instance de useNavigate
+
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      // S'assurer que les cookies, y compris le cookie CSRF, sont envoyés avec la requête
+      axios.defaults.withCredentials = true;
+
+      // Récupérer le cookie CSRF avant d'envoyer la requête de connexion
+      await axios.get("http://localhost:8000/sanctum/csrf-cookie");
+
+      // Extrait le token CSRF du cookie pour l'utiliser dans la requête de connexion
+      const csrfToken = getCsrfToken();
+
+      const response = await axios.post(
+        "http://localhost:8000/api/login",
+        { email, password },
+        {
+          headers: {
+            Accept: "application/json",
+            "X-XSRF-TOKEN": csrfToken, // Fournir le token CSRF extrait dans les en-têtes de la requête
+          },
+        }
+      );
+
+      console.log("Réponse de connexion:", response.data);
+      localStorage.setItem("token", response.data.token);
+      setErrorMessage(null);
+      navigate('/accueil')
+    } catch (error) {
+      if (error.response) {
+        setErrorMessage(
+          "Erreur lors de la connexion : " + error.response.data.message
+        );
+      } else {
+        setErrorMessage("Erreur lors de la connexion.");
+      }
+    }
+  };
+
   return (
     <>
       <div className="container">
@@ -14,13 +71,14 @@ function Connexion() {
             </div>
 
             <div className="container-form-connexion">
-              <form action="">
+              <form onSubmit={handleSubmit}>
                 <div className="container-input">
                   <label>Email</label>
                   <input
                     type="email"
                     placeholder="Votre email"
-                    name="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     required
                   />
                 </div>
@@ -30,10 +88,15 @@ function Connexion() {
                   <input
                     type="password"
                     placeholder="Votre mot de passe"
-                    name="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     required
                   />
                 </div>
+
+                {errorMessage && (
+                  <div className="error-message">{errorMessage}</div>
+                )}
 
                 <div className="container-connexion-btn">
                   <button type="submit">Connexion</button>
@@ -45,6 +108,6 @@ function Connexion() {
       </div>
     </>
   );
-}
+};
 
 export default Connexion;

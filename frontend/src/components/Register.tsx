@@ -12,6 +12,7 @@ function getCsrfToken() {
 }
 
 function Register() {
+  
   const [firstName, setFirstName] = useState("");
   const [familyName, setFamilyName] = useState("");
   const [email, setEmail] = useState("");
