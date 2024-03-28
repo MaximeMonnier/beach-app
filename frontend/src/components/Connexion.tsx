@@ -2,15 +2,10 @@ import React, { useState } from "react";
 import axios from "axios";
 import Logo from "../assets/logo_leubeach.webp";
 import { useNavigate } from "react-router-dom";
+import {getCsrfToken} from '../utils/getCsrfToken';
 
-// Cette fonction reste inchangée, elle extrait le token CSRF du cookie
-function getCsrfToken() {
-  const csrfToken = document.cookie
-    .split("; ")
-    .find((row) => row.startsWith("XSRF-TOKEN="))
-    ?.split("=")[1];
-  return csrfToken ? decodeURIComponent(csrfToken) : null;
-}
+//decode le token voir le file
+getCsrfToken()
 
 const Connexion: React.FC = () => {
   const navigate = useNavigate(); // Créez une instance de useNavigate
