@@ -84,16 +84,17 @@ function Register() {
         <div className="container-register">
           <div className="container-element-register">
             <div className="container-title">
-              <h1 className="title-register">Inscription</h1>
+              <h1 className="title-register text-3xl font-sans">Inscription</h1>
             </div>
 
             {errors.form && <div className="error-message">{errors.form}</div>}
 
             <div className="container-form-register">
               <form onSubmit={handleSubmit}>
-                <div className="container-input">
-                  <label>Nom</label>
+                <div className="container-input mb-1">
+                  <label className="font-sans">Nom</label>
                   <input
+                    className="text-black mt-1 font-sans"
                     type="text"
                     placeholder="Votre nom"
                     name="familly_name"
@@ -105,9 +106,10 @@ function Register() {
                   )}
                 </div>
 
-                <div className="container-input">
-                  <label>Prénom</label>
+                <div className="container-input mb-1">
+                  <label className="font-sans">Prénom</label>
                   <input
+                    className="text-black font-sans mt-1"
                     type="text"
                     placeholder="Votre prénom"
                     name="first_name"
@@ -119,9 +121,10 @@ function Register() {
                   )}
                 </div>
 
-                <div className="container-input">
-                  <label>Email</label>
+                <div className="container-input mb-1">
+                  <label className="font-sans">Email</label>
                   <input
+                    className="text-black font-sans mt-1"
                     type="email"
                     placeholder="Votre email"
                     name="email"
@@ -133,9 +136,10 @@ function Register() {
                   )}
                 </div>
 
-                <div className="container-input">
-                  <label>Mot de passe</label>
+                <div className="container-input mb-1">
+                  <label className="font-sans">Mot de passe</label>
                   <input
+                    className="text-black font-sans mt-1"
                     type="password"
                     placeholder="Votre mot de passe"
                     name="password"
@@ -147,23 +151,27 @@ function Register() {
                   )}
                 </div>
 
-                <div className="container-input">
+                <div className="container-input mb-1">
                   <label>Confirmer le mot de passe</label>
                   <input
+                    className="text-black font-sans mt-1"
                     type="password"
                     placeholder="Confirmez votre mot de passe"
                     name="confirmPassword"
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     required
                   />
-                   {errors.confirmPassword && (
-                    <div className="error-message">{errors.confirmPassword}</div>
+                  {errors.confirmPassword && (
+                    <div className="error-message">
+                      {errors.confirmPassword}
+                    </div>
                   )}
                 </div>
 
-                <div className="container-input">
-                  <label>Date de naissance</label>
+                <div className="container-input mb-1">
+                  <label className="font-sans">Date de naissance</label>
                   <input
+                    className="text-black font-sans mt-1"
                     type="date"
                     name="dob"
                     required

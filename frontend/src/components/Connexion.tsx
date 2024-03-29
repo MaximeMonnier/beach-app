@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Logo from "../assets/logo_leubeach.webp";
 import { useNavigate } from "react-router-dom";
-import { getCsrfToken } from '../utils/getCsrfToken';
+import { getCsrfToken } from "../utils/getCsrfToken";
 
 const Connexion: React.FC = () => {
   const navigate = useNavigate();
@@ -35,7 +35,7 @@ const Connexion: React.FC = () => {
         }
       );
       localStorage.setItem("token", response.data.token);
-      navigate('/accueil');
+      navigate("/accueil");
     } catch (error) {
       // Gestion précise des erreurs retournées par Axios
       if (axios.isAxiosError(error) && error.response) {
@@ -57,13 +57,14 @@ const Connexion: React.FC = () => {
         <div className="container-connexion">
           <div className="container-element-connexion">
             <div className="container-title">
-              <h1 className="title-connexion">Connexion</h1>
+              <h1 className="title-connexion text-2xl font-sans">Connexion</h1>
             </div>
             <div className="container-form-connexion">
               <form onSubmit={handleSubmit}>
-                <div className="container-input">
-                  <label>Email</label>
+                <div className="container-input mb-2">
+                  <label className="font-sans">Email</label>
                   <input
+                    className="text-black font-sans mt-1 p-4"
                     type="email"
                     placeholder="Votre email"
                     value={email}
@@ -71,9 +72,11 @@ const Connexion: React.FC = () => {
                     required
                   />
                 </div>
-                <div className="container-input">
-                  <label>Mot de passe</label>
+
+                <div className="container-input mb-2">
+                  <label className="font-sans">Mot de passe</label>
                   <input
+                    className="text-black font-sans mt-1 p-4"
                     type="password"
                     placeholder="Votre mot de passe"
                     value={password}
@@ -81,7 +84,9 @@ const Connexion: React.FC = () => {
                     required
                   />
                 </div>
-                {errorMessage && <div className="error-message">{errorMessage}</div>}
+                {errorMessage && (
+                  <div className="error-message">{errorMessage}</div>
+                )}
                 <div className="container-connexion-btn">
                   <button type="submit">Connexion</button>
                 </div>
