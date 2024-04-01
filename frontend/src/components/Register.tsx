@@ -78,13 +78,15 @@ function Register() {
   return (
     <>
       <div className="container">
-        <div className="logo">
-          <img src={Logo} alt="Logo" />
-        </div>
         <div className="container-register">
           <div className="container-element-register">
             <div className="container-title">
-              <h1 className="title-register text-3xl font-sans">Inscription</h1>
+              <div className="logo">
+                <img src={Logo} alt="Logo" />
+                <h1 className="title-register text-3xl font-sans">
+                  Inscription
+                </h1>
+              </div>
             </div>
 
             {errors.form && <div className="error-message">{errors.form}</div>}

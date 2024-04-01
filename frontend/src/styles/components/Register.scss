@@ -2,15 +2,7 @@
 
 .container {
   width: 35%;
-  .logo {
-    @include CenterContent;
-    margin: 15px;
-    img {
-      @include CenterContent;
-      border-radius: 100%;
-      width: 30%;
-    }
-  }
+
   .container-register {
     border: solid 5px $color-1;
     border-radius: 10%;
@@ -18,16 +10,29 @@
 
     .container-element-register {
       @include CenterContent;
-      width: 100%;
 
       .container-title {
         @include CenterContent;
-        width: 20%;
-        height: 100%;
+        width: 30%;
 
-        .title-register {
+        .logo {
+          display: flex;
+          flex-direction: row-reverse;
+          justify-content: center;
           rotate: -90deg;
-          color: $color-3;
+
+          img {
+            @include CenterContent;
+            border-radius: 100%;
+            width: 60%;
+            rotate: 90deg;
+
+          }
+          .title-register {
+            @include CenterContent;
+            color: $color-3;
+            margin-right: 20px;
+          }
         }
       }
 
