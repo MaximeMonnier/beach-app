@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthConnexionTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * @test
      */
@@ -32,7 +34,7 @@ class AuthConnexionTest extends TestCase
             'familly_name' => 'Doe',
             'email' => 'john@example.com',
             'password' => 'password',
-            'dob' => '2000-01-01',
+            'dob' => '06-09-1995',
         ];
 
         $response = $this->postJson('/api/register', $userData);
@@ -59,7 +61,7 @@ class AuthConnexionTest extends TestCase
             'familly_name' => 'Doe',
             'email' => 'jane@example.com',
             'password' => Hash::make('password'),
-            'dob' => '2000-01-01',
+            'dob' => '06-09-1995',
         ]);
 
         $loginData = [
