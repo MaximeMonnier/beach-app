@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import Connexion from '../components/Connexion';
 
-const Login_Register: React.FC = () => {
+const ConnexionPage: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const Login_Register: React.FC = () => {
   );
 }
 
-export default Login_Register;
+export default ConnexionPage;
 
 
 
