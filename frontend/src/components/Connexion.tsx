@@ -51,7 +51,7 @@ const Connexion: React.FC = () => {
   return (
     <>
       <div className="container">
-        <div className="logo">
+        <div className="coucou">
           <img src={Logo} alt="Logo" />
         </div>
         <div className="container-connexion">

@@ -1,8 +1,12 @@
+import React from 'react';
+import NavBar from '../components/NavBar';
+import backgroundImage from '../assets/bg-run.jpg'
 
-function Accueil() {
+const Accueil: React.FC = () => {
   return (
-    <div className="bg-blue-500 text-white p-4">
-      Bienvenue sur la page d'accueil !
+    
+    <div className="h-screen bg-cover bg-center rounded-tl-3xl rounded-tr-3xl" style={{backgroundImage: `url(${backgroundImage})`}}> 
+      <NavBar />
     </div>
   );
 }
