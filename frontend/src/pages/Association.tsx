@@ -1,10 +1,14 @@
 import React from 'react'
+import NavBar from '../components/NavBar';
+
 
 type Props = {}
 
 function Association({}: Props) {
   return (
-    <div>Association</div>
+    <div className='p-2'>
+      <NavBar />
+    </div>
   )
 }
 

@@ -53,19 +53,22 @@ const Accueil: React.FC = () => {
         </div>
         <div className="hidden items-center md:flex w-full md:w-auto bg-transparent">
           <ul className="flex flex-col items-center md:flex-row text-color-3 w-full">
-            <li className="m-2 cursor-pointer">
+            <li className="m-2 cursor-pointer test-center">
+              <Link to="/accueil">Accueil</Link>
+            </li>
+            <li className="m-2 cursor-pointer test-center">
               <Link to="/terrain">Terrain</Link>
             </li>
-            <li className="m-2 cursor-pointer text-center w-24">
+            <li className="m-2 cursor-pointer text-center w-20">
               <Link to="/leuactu">Leu Actu</Link>
             </li>
-            <li className="m-2 cursor-pointer">
+            <li className="m-2 cursor-pointer test-center">
               <Link to="/association">Association</Link>
             </li>
-            <li className="m-2 cursor-pointer">
+            <li className="m-2 cursor-pointer test-center">
               <Link to="/evenement">Evenement</Link>
             </li>
-            <li className="m-2 cursor-pointer">
+            <li className="m-2 cursor-pointer test-center">
               <Link to="/blog">Blog</Link>
             </li>
             <li className="m-2 cursor-pointer">
@@ -110,6 +113,9 @@ const Accueil: React.FC = () => {
         } absolute md:hidden w-full bg-bg-2 shadow-lg rounded-b-xl z-20`}
       >
         <ul className="flex flex-col text-color-3 w-full">
+          <li className="m-2 cursor-pointer">
+            <Link to="/accueil">Accueil</Link>
+          </li>
           <li className="m-2 cursor-pointer">
             <Link to="/terrain">Terrain</Link>
           </li>
