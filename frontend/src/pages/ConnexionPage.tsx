@@ -17,7 +17,6 @@ const ConnexionPage: React.FC = () => {
 
   return (
     <div ref={containerRef} className="h-screen flex items-center justify-center">
-      <div className="bar h-40 w-2 bg-color-2 mx-15"></div>
       <Connexion />
     </div>
   );

@@ -1,10 +1,27 @@
 import React, { useState, useEffect } from "react";
 import Logo from "../assets/logo_leubeach.webp";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 
 const Accueil: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const navigate = useNavigate();
+
+  const logout = async () => {
+    localStorage.removeItem('token');
+
+    await fetch('/api/logout', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+      },
+    });
+
+    navigate("/connexion");
+  }
 
   useEffect(() => {
     document.body.classList.toggle("dark", isDarkMode);
@@ -61,7 +78,9 @@ const Accueil: React.FC = () => {
               <li className="m-2">
                 <i className="fa-solid fa-lock-open"></i>
               </li>
-              <li className="m-2 cursor-pointer">Connexion</li>
+              <button className="m-2" onClick={logout}>
+                Déconnexion
+              </button>
             </ul>
           </div>
         </div>
@@ -108,7 +127,9 @@ const Accueil: React.FC = () => {
             <li className="m-2">
               <i className="fa-solid fa-lock-open"></i>
             </li>
-            <li className="m-2 cursor-pointer">Connexion</li>
+            <button className="m-2">
+              <Link to="/connexion">Connexion</Link>
+            </button>
           </ul>
         </div>
       </div>
