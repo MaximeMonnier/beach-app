@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Logo from "../assets/logo_leubeach.webp";
 import { Link } from "react-router-dom";
 
 const Accueil: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    document.body.classList.toggle("dark", isDarkMode);
+  }, [isDarkMode]);
 
   return (
     <div className="relative">
-      <nav className="w-full flex justify-between items-center bg-bg-2 rounded-3xl shadow-lg px-4 py-2">
+      <nav className="w-full flex justify-between items-center bg-bg-2 rounded-3xl shadow-lg px-4 py-2 dark:bg-bg-1">
         <div className="ml-4 my-1">
           <img className="w-16 rounded-full" src={Logo} alt="logo" />
         </div>
@@ -40,12 +45,16 @@ const Accueil: React.FC = () => {
           </ul>
           <div className="flex flex-col md:flex-row w-full">
             <ul className="flex flex-col md:flex-row text-color-3 w-full">
-              <li className="m-2">
-                <i className="fa-solid fa-sun"></i>
-              </li>
-              <li className="m-2">
-                <i className="fa-regular fa-moon"></i>
-              </li>
+              <button
+                className="m-2"
+                onClick={() => setIsDarkMode(!isDarkMode)}
+              >
+                <i
+                  className={
+                    isDarkMode ? "fa-regular fa-moon" : "fa-solid fa-sun"
+                  }
+                ></i>
+              </button>
               <li className="m-2">
                 <i className="fa-solid fa-lock"></i>
               </li>
@@ -86,12 +95,13 @@ const Accueil: React.FC = () => {
         </ul>
         <div className="flex flex-col w-full">
           <ul className="flex flex-col md:flex-row text-color-3 w-full">
-            <li className="m-2">
-              <i className="fa-solid fa-sun"></i>
-            </li>
-            <li className="m-2">
-              <i className="fa-regular fa-moon"></i>
-            </li>
+            <button className="m-2" onClick={() => setIsDarkMode(!isDarkMode)}>
+              <i
+                className={
+                  isDarkMode ? "fa-regular fa-moon" : "fa-solid fa-sun"
+                }
+              ></i>
+            </button>
             <li className="m-2">
               <i className="fa-solid fa-lock"></i>
             </li>
