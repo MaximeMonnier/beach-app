@@ -34,15 +34,20 @@ const Connexion: React.FC = () => {
           },
         }
       );
+
+      
       localStorage.setItem("token", response.data.token);
+      localStorage.setItem('userInfo', JSON.stringify(response.data.user));
       navigate("/accueil");
+      
     } catch (error) {
-      // Gestion précise des erreurs retournées par Axios
-      if (axios.isAxiosError(error) && error.response) {
-        // Adapter le message d'erreur en fonction de la réponse du serveur
-        setErrorMessage("Identifiant incorrecte");
+      if (axios.isAxiosError(error)) {
+        if (error.response) {
+          setErrorMessage("Identifiant incorrecte");
+        } else {
+          setErrorMessage("Problème de connexion au serveur.");
+        }
       } else {
-        // Gérer les autres types d'erreurs (réseau, etc.)
         setErrorMessage("Erreur lors de la connexion.");
       }
     }

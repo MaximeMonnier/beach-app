@@ -7,7 +7,15 @@ import { useNavigate } from "react-router-dom";
 const Accueil: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [userInfo, setUserInfo] = useState(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const storedUserInfo = localStorage.getItem('userInfo');
+    if (storedUserInfo) {
+      setUserInfo(JSON.parse(storedUserInfo));
+    }
+  }, []);
 
   const logout = async () => {
     localStorage.removeItem('token');
@@ -133,6 +141,16 @@ const Accueil: React.FC = () => {
           </ul>
         </div>
       </div>
+      <div>
+      {userInfo ? (
+        <div>
+          <p>Bonjour, {userInfo.first_name} {userInfo.familly_name}!</p>
+          {/* Bouton de déconnexion ou autres éléments */}
+        </div>
+      ) : (
+        <p>Veuillez vous connecter.</p>
+      )}
+    </div>
     </div>
   );
 };
