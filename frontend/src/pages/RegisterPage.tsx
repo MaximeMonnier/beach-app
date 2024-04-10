@@ -19,7 +19,6 @@ const Login_Register: React.FC = () => {
 
   return (
     <div ref={containerRef} className="container-form h-screen flex items-center justify-center">
-      <div className="bar h-40 w-2 bg-color-2 m-0 15"></div>
       <Register />
     </div>
   );

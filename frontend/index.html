@@ -8,12 +8,43 @@
   </head>
   <body>
     <div id="root"></div>
+
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script
       src="https://kit.fontawesome.com/411a6a3294.js"
       crossorigin="anonymous"
     ></script>
+
     <script type="module" src="/src/main.tsx"></script>
+
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Poppins", "sans-serif"],
+            },
+            colors: {
+              "color-1": "#ba2f0f",
+              "color-2": "#0b2a24",
+              "color-3": "#f9e6c6",
+              "bg-1": "#ba2f0f",
+              "bg-2": "#0b2a24",
+              "bg-3": "#f9e6c6",
+            },
+            screens: {
+              sm: "640px",
+              md: "768px",
+              lg: "1024px",
+              xl: "1280px",
+              "2xl": "1536px",
+              menu: "860px",
+            },
+          },
+        },
+      };
+    </script>
   </body>
 </html>
