@@ -3,33 +3,37 @@ import Logo from "../assets/logo_leubeach.webp";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
+interface UserInfo {
+  first_name: string;
+  familly_name: string;
+}
 
 const Accueil: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [userInfo, setUserInfo] = useState(null);
+  const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const storedUserInfo = localStorage.getItem('userInfo');
+    const storedUserInfo = localStorage.getItem("userInfo");
     if (storedUserInfo) {
       setUserInfo(JSON.parse(storedUserInfo));
     }
   }, []);
 
   const logout = async () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
 
-    await fetch('/api/logout', {
-      method: 'POST',
+    await fetch("/api/logout", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
 
     navigate("/connexion");
-  }
+  };
 
   useEffect(() => {
     document.body.classList.toggle("dark", isDarkMode);
@@ -80,15 +84,20 @@ const Accueil: React.FC = () => {
                   }
                 ></i>
               </button>
-              <li className="m-2">
-                <i className="fa-solid fa-lock"></i>
-              </li>
-              <li className="m-2">
-                <i className="fa-solid fa-lock-open"></i>
-              </li>
-              <button className="m-2" onClick={logout}>
-                Déconnexion
-              </button>
+              {userInfo ? (
+                <div className="flex items-center">
+                  <p>
+                    {userInfo.first_name} {userInfo.familly_name}
+                  </p>
+                  <button className="m-2" onClick={logout}>
+                    <i className="fa-solid fa-lock"></i>
+                  </button>
+                </div>
+              ) : (
+                <button className="m-2" onClick={logout}>
+                  Déconnexion <i className="fa-solid fa-lock"></i>
+                </button>
+              )}
             </ul>
           </div>
         </div>
@@ -129,28 +138,23 @@ const Accueil: React.FC = () => {
                 }
               ></i>
             </button>
-            <li className="m-2">
-              <i className="fa-solid fa-lock"></i>
-            </li>
-            <li className="m-2">
-              <i className="fa-solid fa-lock-open"></i>
-            </li>
-            <button className="m-2">
-              <Link to="/connexion">Connexion</Link>
-            </button>
+            {userInfo ? (
+              <div className="flex items-center">
+                <p>
+                  {userInfo.first_name} {userInfo.familly_name}
+                </p>
+                <button className="m-2" onClick={logout}>
+                  <i className="fa-solid fa-lock"></i>
+                </button>
+              </div>
+            ) : (
+              <button className="m-2" onClick={logout}>
+                Déconnexion <i className="fa-solid fa-lock"></i>
+              </button>
+            )}
           </ul>
         </div>
       </div>
-      <div>
-      {userInfo ? (
-        <div>
-          <p>Bonjour, {userInfo.first_name} {userInfo.familly_name}!</p>
-          {/* Bouton de déconnexion ou autres éléments */}
-        </div>
-      ) : (
-        <p>Veuillez vous connecter.</p>
-      )}
-    </div>
     </div>
   );
 };
