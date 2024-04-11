@@ -12,7 +12,7 @@ const Accueil: React.FC = () => {
       <div className='w-full'>
         <h1>Leubeach</h1>
       </div>
-      <div className="w-full grid grid-cols-3"> 
+      <div className="w-full grid grid-cols-3 gap-4"> 
         <CardRugby/>
         <CardTennis/>
         <CardVolley/>

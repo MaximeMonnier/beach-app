@@ -21,8 +21,8 @@ function App() {
   return (
     <BrowserRouter>
     <Routes>
-      <Route path="/" element={<RegisterPage />} />
-      <Route path="/connexion" element={<ConnexionPage />} />
+      <Route path="/" element={<ConnexionPage />} />
+      <Route path="/register" element={<RegisterPage />} />
       <Route path="/accueil" element={<ProtectedRoute>
         <Accueil />
       </ProtectedRoute>} />
