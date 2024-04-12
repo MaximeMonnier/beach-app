@@ -35,11 +35,9 @@ const Connexion: React.FC = () => {
         }
       );
 
-      
       localStorage.setItem("token", response.data.token);
-      localStorage.setItem('userInfo', JSON.stringify(response.data.user));
+      localStorage.setItem("userInfo", JSON.stringify(response.data.user));
       navigate("/accueil");
-      
     } catch (error) {
       if (axios.isAxiosError(error)) {
         if (error.response) {
@@ -56,13 +54,11 @@ const Connexion: React.FC = () => {
   return (
     <>
       <div className="container">
-        <div className="coucou">
-          <img src={Logo} alt="Logo" />
-        </div>
         <div className="container-connexion">
           <div className="container-element-connexion">
             <div className="container-title">
               <h1 className="title-connexion text-2xl font-sans">Connexion</h1>
+              <img src={Logo} alt="Logo" />
             </div>
             <div className="container-form-connexion">
               <form onSubmit={handleSubmit}>
