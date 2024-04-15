@@ -1,0 +1,50 @@
+= Charte Graphique
+
+Bleu Océan : #0077B6
+Sable Doré : #F4CA16
+Vert Palmier : #2A9D8F
+Gris Neutre : #6B7280
+
+= Avant-propos
+
+== Description de votre entreprise
+Jeune motiver, futur start-up de la Réunion. Filao developpement.
+UVP: particuliers
+
+== Prérequis
+
+* Type de site: Application Web
+
+* Description de l’objectif: Développer une application de gestion de terrain de beach à St-Leu. L'idée est de pouvoir matérialiser le terrain et le découper en plusieurs sections qui représentera un terrain. Chaque utilisateur pourra réserver un terrain en fonction de son niveau dans l'application. Exemple: les associations ont une priorité de réservation vu qu'elles réunissent beaucoup de personnes sur un même créneau. Il est important de définir les jours réservés par les asso et les plages horaires libres afin de pouvoir laisser la possibilité aux particuliers de pouvoir réserver un espace pendant cette période.
+
+* Besoin utilisateurs: Permet aux asso et aux particuliers de mieux planifier leur séance et d'avoir une meilleure vision des demandes de chacun/meilleure organisation, un meilleur échange entre chacun.
+
+* Résolution problème: Permet la résolution des conflits entre particuliers asso, le partage équitable des terrains et de durée de temps,
+
+* Ciblage: Mairie, Association Sportive, Particuliers
+* Contraintes: Le temps, les connaissances, seul.
+* Budget: Mon temps est précieux, sinon j'estime l'application à 50000€.
+
+== Création
+
+* Charte graphique: Prendre un template bootstrap ou tailwind pour gagner du temps.
+* Exemples d'autres sites (optionnel): ???
+* Adjectifs sur la forme, la personnalité et l'apparence: Voir en fonction du template.
+
+== Fonctionnalités
+
+* Arborescence:
+* Fonctionnalités:
+* Pages de contenus:
+* Fonctionnalités:
+* Technique:
+* Technologie: JS, NodeJS, Bootstrap?, Tailwind?, React,
+* Nom de domaines: Filao
+* Hébergement: Serveur Français
+* Maintenance: Réfléchir à une app multicouche
+
+== SEO
+
+== Autres prestations
+
+== Glossaire
