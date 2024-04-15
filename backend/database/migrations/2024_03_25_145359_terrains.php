@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('terrain_name');
             $table->unsignedBigInteger('terrain_type_id');
-            $table->date('date_start');
-            $table->date('date_end');
             $table->timestamps();
         });
     }
