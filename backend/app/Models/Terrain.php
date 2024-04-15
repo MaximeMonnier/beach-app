@@ -23,7 +23,7 @@ class Terrain extends Model
      */
     public function terrainType()
     {
-        return $this->belongsTo(TerainType::class, 'terrain_type_id');
+        return $this->belongsTo(TerrainType::class, 'terrain_type_id');
     }
 
     /**

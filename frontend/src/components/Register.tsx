@@ -3,6 +3,7 @@ import axios from "axios";
 import Logo from "../assets/logo_leubeach.webp";
 import { useNavigate } from "react-router-dom";
 import { getCsrfToken } from "../utils/getCsrfToken";
+import { Link } from "react-router-dom";
 
 function Register() {
   const navigate = useNavigate();
@@ -57,7 +58,7 @@ function Register() {
 
       console.log("Réponse d'inscription reçue:", response);
       console.log("Résultat de l'inscription:", response.data);
-      navigate("accueil");
+      navigate("/accueil");
 
       setIsSubmitting(false);
     } catch (error) {
@@ -192,6 +193,14 @@ function Register() {
               </form>
             </div>
           </div>
+        </div>
+        <div className="w-full flex justify-center items-center mt-6">
+          <p className="text-color-1 mr-1">Déjà inscrit ?</p>
+          <p className="text-color-1 hover:text-color-2">
+            <Link to="/">
+              cliqué ici <i className="fa-solid fa-plug"></i>
+            </Link>
+          </p>
         </div>
       </div>
     </>

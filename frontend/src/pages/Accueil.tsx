@@ -3,47 +3,65 @@ import NavBar from "../components/NavBar";
 import CardRugby from "../components/Card/CardRugby";
 import CardTennis from "../components/Card/CardTennis";
 import CardVolley from "../components/Card/CardVolley";
-import BG from "../assets/bg-run.jpg";
+import imgAccueil from "../assets/img_accueil.png";
+import { Link } from "react-router-dom";
 
 const Accueil: React.FC = () => {
   return (
-    <div className="h-screen p-2 flex flex-col justify-between">
-      <div className="w-full">
-        <NavBar />
-      </div>
-
-      <div className="w-full flex-grow flex flex-col sm:flex-row justify-between items-center gap-2 py-2">
-        <div className="w-full sm:w-1/6 h-full p-2 text-color-3 bg-bg-1 flex flex-col justify-between rounded-xl dark:text-color-1 dark:bg-bg-2">
-          <h2>Méteo</h2>
-          <h2>Ville</h2>
-          <h2>Date</h2>
-          <h2>Jour</h2>
-          <h2>Océan</h2>
+    <div>
+      <div className="h-screen p-2 flex flex-col">
+        <div className="w-full">
+          <NavBar />
         </div>
-        <div
-          className="w-full sm:w-auto h-full rounded-xl flex flex-col justify-between"
-          style={{ backgroundImage: `url(${BG})`, backgroundSize: "cover" }}
-        >
-          <div className="w-full h-2/3 sm:h-full border border-red-600 flex items-center p-4">
-            <h1 className="text-color-1 text-2xl">
-             Le Volcan est entré en éruption !!!!
-             Proposer de changer de photos avec un système de vote
-            </h1>
+
+        <div className="w-full p-4 flex flex-col">
+          <div className="w-auto flex justify-around items-center p-4">
+            <div className="flex flex-col items-start">
+              <h1 className="text-7xl font-sans font-bold">
+                <span className="text-color-1 dark:text-color-2">
+                  Réservez un terrain
+                </span>{" "}
+                <br />
+                <span className="text-color-2 text-5xl dark:text-color-1">
+                  Pour jouer &nbsp;
+                  <i className="fa-solid fa-volleyball text-color-1 dark:text-color-2"></i>
+                </span>
+                <br />
+                <span className="text-color-1 dark:text-color-2">
+                  avec vos amies
+                </span>{" "}
+                &nbsp;
+                <i className="fa-solid fa-people-group text-color-2 dark:text-color-1"></i>
+              </h1>
+              <button className="bg-bg-2 text-color-1 p-2 rounded-xl mt-4 hover:bg-bg-1 hover:text-color-3 dark:bg-bg-1 dark:text-color-3 dark:hover:bg-bg-2 dark:hover:text-color-1">
+                <Link to="/terrain">
+                  Voir les Terrains{" "}
+                  <i className="fa-solid fa-archway text-color-1 dark:text-color-3"></i>
+                </Link>
+              </button>
+            </div>
+            <div>
+              <img src={imgAccueil} alt="img accueil" />
+            </div>
           </div>
-          <div className="w-full h-1/3 sm:h-auto border border-red-600 flex justify-center">
-            <p className="text-color-1">
-            Voir plus
+
+          <div className="w-full flex flex-col items-center">
+            <p className="text-color-1 hover:p-1 hover:bg-bg-2 hover:rounded-xl hover:text-color-1 dark:hover:bg-bg-1 dark:hover:text-color-3">
+              <a href="#section1">Voir plus</a>
+            </p>
+            <p>
+              <i className="fa-solid fa-arrow-down text-color-1 dark:text-color-1"></i>
             </p>
           </div>
         </div>
-        <div className="w-full sm:w-2/6 h-full bg-bg-1 rounded-xl text-color-3 flex flex-col justify-between p-2 dark:text-color-1 dark:bg-bg-2">
-          <h2>Information</h2>
-          <h2>Terrain dispo</h2>
-          <h2>Participant</h2>
-        </div>
       </div>
 
-      <div className="w-full grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div className="w-full mt-12 h-2 bg-bg-1 dark:bg-bg-2"></div>
+
+      <div
+        id="section1"
+        className="w-full mt-2 grid grid-cols-1 sm:grid-cols-3 gap-4"
+      >
         <CardRugby />
         <CardTennis />
         <CardVolley />

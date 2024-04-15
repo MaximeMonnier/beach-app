@@ -3,6 +3,7 @@ import axios from "axios";
 import Logo from "../assets/logo_leubeach.webp";
 import { useNavigate } from "react-router-dom";
 import { getCsrfToken } from "../utils/getCsrfToken";
+import { Link } from "react-router-dom";
 
 const Connexion: React.FC = () => {
   const navigate = useNavigate();
@@ -60,6 +61,7 @@ const Connexion: React.FC = () => {
               <h1 className="title-connexion text-2xl font-sans">Connexion</h1>
               <img src={Logo} alt="Logo" />
             </div>
+
             <div className="container-form-connexion">
               <form onSubmit={handleSubmit}>
                 <div className="container-input mb-2">
@@ -94,6 +96,14 @@ const Connexion: React.FC = () => {
               </form>
             </div>
           </div>
+        </div>
+        <div className="w-full flex justify-center items-center mt-6">
+          <p className="text-color-1 mr-1">Pas encore inscrit ?</p>
+          <p className="text-color-1 hover:text-color-2">
+            <Link to="/register">
+              cliqué ici <i className="fa-solid fa-house-tsunami"></i>
+            </Link>
+          </p>
         </div>
       </div>
     </>
