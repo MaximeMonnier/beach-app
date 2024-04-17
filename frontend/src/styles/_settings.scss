@@ -1,26 +1,47 @@
+/* Customise l'apparence de la scrollbar entière */
+::-webkit-scrollbar {
+  width: 12px; /* Largeur de la barre de défilement */
+  height: 12px; /* Hauteur de la barre de défilement pour les scrollbars horizontales */
+}
 
+/* Customise le fond de la barre de défilement (la partie où la barre se déplace) */
+::-webkit-scrollbar-track {
+  background: #004b49; /* Couleur de fond */
+  border-radius: 10px; /* Bords arrondis */
+}
+
+/* Customise l'apparence de la barre de défilement elle-même */
+::-webkit-scrollbar-thumb {
+  background-color: #fff8dc; /* Couleur de la barre */
+  border-radius: 10px; /* Bords arrondis */
+  border: 2px solid #017358; /* Bordure autour de la barre */
+}
+
+/* Customise l'apparence de la barre de défilement lors du survol */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Changement de couleur lors du survol */
+}
 
 // font family
-
 // Poppins
-@import url('https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 //Lobester Two
-@import url('https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 // color
-$color-1: #FFF8DC;
+$color-1: #fff8dc;
 $color-2: #017358;
-$color-3: #004B49;
+$color-3: #004b49;
 
 //mixin
 @mixin CenterContent {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 @mixin flexCenter {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 // sugegstion de mixin pour le responsive, les btn, les hover sur btn, card etc...
@@ -28,19 +49,19 @@ $color-3: #004B49;
 
 // parmaetre généraux
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 body {
-    background: $color-3;
-    font-family: "Poppins", sans-serif;
-    font-weight: 500;
-    font-style: normal;
+  background: $color-3;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
 }
 
 li {
-    list-style: none;
+  list-style: none;
 }
