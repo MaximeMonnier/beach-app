@@ -3,6 +3,7 @@ import CardRugby from "../components/Card/CardRugby";
 import CardTennis from "../components/Card/CardTennis";
 import CardVolley from "../components/Card/CardVolley";
 import FullCalendar from "../components/FullCalendar";
+import TerrainComponent from "../components/TerrainComponent";
 
 type Props = {};
 
@@ -22,10 +23,8 @@ function Terrain({}: Props) {
             <h2>Océan</h2>
           </div> */}
           <div className="w-full sm:w-4/6 h-full rounded-xl flex flex-col justify-between">
-            <div className="w-full h-2/3 sm:h-full border border-red-600 flex items-center p-4">
-              <h1 className="text-color-1 text-2xl">
-               Trouve run moyen de faire afficher les terrains en mode sympa, faire la posiibliter de faire agrandir les colonnes sur la droit et mettre la meteo en colonne sur la gauche 
-              </h1>
+            <div className="w-full h-2/3 sm:h-full border border-red-600 flex items-center px-4">
+              <TerrainComponent />
             </div>
           </div>
           <div className="w-full sm:w-2/6 h-full flex-grow flex flex-col justify-around items-start gap-2">
@@ -33,6 +32,35 @@ function Terrain({}: Props) {
               <FullCalendar />
             </div>
             <div className="w-full h-full bg-bg-1 rounded-xl text-color-3 flex flex-col justify-between p-2 dark:text-color-1 dark:bg-bg-2">
+              <div className="w-full bg-bg-3 rounded-xl h-10 flex items-center">
+                <button className="bg-bg-2 text-color-1 px-2 rounded-xl hover:bg-bg-1 hover:text-color-3 dark:bg-bg-1 dark:text-color-3 dark:hover:bg-bg-2 dark:hover:text-color-1">
+                  <a href="/terrain">
+                    BooK{" "}
+                    <i
+                      className="fa-solid fa-archway text-color-1 dark:text-color-3"
+                      aria-hidden="true"
+                    ></i>
+                  </a>
+                </button>
+                <button className="bg-bg-2 text-color-1 px-2 rounded-xl hover:bg-bg-1 hover:text-color-3 dark:bg-bg-1 dark:text-color-3 dark:hover:bg-bg-2 dark:hover:text-color-1">
+                  <a href="/terrain">
+                    Météo{" "}
+                    <i
+                      className="fa-solid fa-archway text-color-1 dark:text-color-3"
+                      aria-hidden="true"
+                    ></i>
+                  </a>
+                </button>
+                <button className="bg-bg-2 text-color-1 px-2 rounded-xl hover:bg-bg-1 hover:text-color-3 dark:bg-bg-1 dark:text-color-3 dark:hover:bg-bg-2 dark:hover:text-color-1">
+                  <a href="/terrain">
+                    Détails{" "}
+                    <i
+                      className="fa-solid fa-archway text-color-1 dark:text-color-3"
+                      aria-hidden="true"
+                    ></i>
+                  </a>
+                </button>
+              </div>
               <h2>Information</h2>
               <h2>Terrain dispo</h2>
               <h2>Participant</h2>

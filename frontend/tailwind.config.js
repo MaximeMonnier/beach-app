@@ -1,6 +1,10 @@
-/** @type {import('tailwindcss').Config} */
-export default {
-  darkMode: 'class',
+const plugin = require("tailwindcss/plugin");
+
+module.exports = {
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}", // inclure tsx pour TypeScript
+  ],
+  darkMode: "class",
   theme: {
     extend: {
       fontFamily: {
@@ -30,5 +34,8 @@ export default {
       },
     },
   },
-}
-
+  plugins: [
+    require("autoprefixer"),
+    require("@tailwindcss/nesting")(require("postcss-nesting")),
+  ],
+};
