@@ -1,9 +1,7 @@
 const plugin = require("tailwindcss/plugin");
 
 module.exports = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}", // inclure tsx pour TypeScript
-  ],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   darkMode: "class",
   theme: {
     extend: {
@@ -34,8 +32,5 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    require("autoprefixer"),
-    require("@tailwindcss/nesting")(require("postcss-nesting")),
-  ],
+  plugins: [require("daisyui")],
 };
