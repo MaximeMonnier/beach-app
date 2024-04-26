@@ -1,6 +1,8 @@
-/** @type {import('tailwindcss').Config} */
-export default {
-  darkMode: 'class',
+const plugin = require("tailwindcss/plugin");
+
+module.exports = {
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  darkMode: "class",
   theme: {
     extend: {
       fontFamily: {
@@ -10,9 +12,15 @@ export default {
         "color-1": "#FFF8DC",
         "color-2": "#017358",
         "color-3": "#004B49",
+        "color-4": "#BCC6CC",
+        "color-5": "#98d7c2",
+        "color-6": "#E97451",
         "bg-1": "#FFF8DC",
         "bg-2": "#017358",
         "bg-3": "#004B49",
+        "bg-4": "#BCC6CC",
+        "bg-5": "#98d7c2",
+        "bg-6": "#E97451",
       },
       screens: {
         sm: "640px",
@@ -24,5 +32,5 @@ export default {
       },
     },
   },
-}
-
+  plugins: [require("daisyui")],
+};

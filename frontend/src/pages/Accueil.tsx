@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 const Accueil: React.FC = () => {
   return (
-    <div>
+    <div className="bg-bg-5 dark:bg-bg-3">
       <div className="h-screen p-2 flex flex-col">
         <div className="w-full">
           <NavBar />

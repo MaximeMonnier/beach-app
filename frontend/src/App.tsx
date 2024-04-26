@@ -1,5 +1,7 @@
+
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./styles/main.scss";
+import './App.css';
 
 //Component
 import RegisterPage from "./pages/RegisterPage";
