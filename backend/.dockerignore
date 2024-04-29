@@ -1,0 +1,37 @@
+# Dépendances
+/vendor
+/node_modules
+
+# Environnement
+.env
+.env.example
+
+# Storage et cache
+storage/*.key
+storage/framework/
+storage/logs/
+bootstrap/cache/
+
+# Fichiers de configuration de l'éditeur
+.idea
+*.sublime-project
+*.sublime-workspace
+
+# Fichiers temporaires
+.DS_Store
+*.swp
+*.swo
+*.tmp
+*.bak
+*.tar.*
+*.tgz
+*.log
+
+# Autres
+.git
+.gitignore
+README.md
+LICENSE
+.dockerignore
+Dockerfile
+*.md
