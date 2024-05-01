@@ -1,9 +1,6 @@
 # Base image
 FROM node:20-alpine
 
-# Install PostgreSQL client
-RUN apk add --no-cache postgresql-client
-
 # Create app directory
 WORKDIR /usr/src/app
 
@@ -18,17 +15,13 @@ COPY . .
 
 ENV DATABASE_URL "postgresql://admin:root@dbpostgres:5432/blogdb"
 
-# Install Prisma CLI for running migrations
-RUN npm install prisma --save-dev
 
-# Copy entrypoint script
-COPY entrypoint.sh /usr/src/app/entrypoint.sh
+# Creates a "dist" folder with the production build
+RUN npm run build
 
-# Make entrypoint script executable
-RUN chmod +x /usr/src/app/entrypoint.sh
+# RUN npx prisma generate
+# RUN npx prisma migrate dev --name init
+# RUN npm run db:seed
 
-# Set entrypoint script to run on container start
-ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
-
-# Command to start the Node.js application
-CMD ["npm", "run", "start:dev"]
+# Start the server using the production build
+CMD [ "npm", "run", "start:dev" ]
