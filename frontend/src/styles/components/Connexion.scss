@@ -1,7 +1,8 @@
 @import "../settings";
 .container {
   .container-connexion {
-    width: 100%;
+    margin: auto;
+    width: 40%;
     border-radius: 2%;
     border: solid 5px $color-2;
     background: $color-1;

@@ -4,9 +4,9 @@ services:
     build:
       context: ./frontend
     volumes:
-      - ./frontend:/app # Montage du code source pour le développement en direct
+      - ./frontend:/app 
     ports:
-      - "5173:5173" # Assurez-vous que cela correspond au port exposé dans votre Dockerfile frontend
+      - "5173:5173" 
     networks:
       - app-network
 
@@ -17,12 +17,12 @@ services:
     environment:
       MYSQL_DATABASE: ${DB_DATABASE}
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
-      APP_ENV: development # Définir l'environnement de développement
+      APP_ENV: development 
     volumes:
-      - ./backend:/var/www # Montage du code source pour le développement en direct
-      - /var/www/vendor # Exclure vendor du montage
+      - ./backend:/var/www 
+      - /var/www/vendor 
     ports:
-      - "8000:80" # Assurez-vous que cela correspond au port exposé par votre serveur web dans le conteneur
+      - "8000:80"
     networks:
       - app-network
       - db
@@ -35,7 +35,7 @@ services:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
     volumes:
       - ./initdb:/docker-entrypoint-initdb.d
-      - mysql-data:/var/lib/mysql # Persister les données MySQL entre les redémarrages du conteneur
+      - mysql-data:/var/lib/mysql 
     ports:
       - "3306:3306"
     networks:
@@ -56,7 +56,7 @@ services:
 
   dbpostgres:
     image: postgis/postgis:13-master
-    container_name: dbpostgis
+    container_name: dbpostgres
     volumes:
       - db_data:/var/lib/postgresql/data
     ports:
@@ -65,6 +65,22 @@ services:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: root
       POSTGRES_DB: blogdb
+    networks:
+      - db
+
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: root            
+    ports:
+      - "5050:80"                               
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin       
+    networks:
+      - db                                      
+
 
   apinest:
     build:
@@ -86,3 +102,4 @@ networks:
 volumes:
   mysql-data:
   db_data:
+  pgadmin-data:                       
