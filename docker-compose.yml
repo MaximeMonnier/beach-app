@@ -93,6 +93,8 @@ services:
     environment:
       - NODE_ENV=production
       - DATABASE_URL=postgresql://admin:root@dbpostgres:5432/blogdb
+    networks:
+      - db
 
 networks:
   app-network:
