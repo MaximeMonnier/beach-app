@@ -54,10 +54,35 @@ services:
     networks:
       - db
 
+  dbpostgres:
+    image: postgis/postgis:13-master
+    container_name: dbpostgis
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: blogdb
+
+  apinest:
+    build:
+      context: ./blog-service
+    container_name: apinest
+    ports:
+      - 3000:3000
+    depends_on:
+      - dbpostgres
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgresql://admin:root@dbpostgres:5432/blogdb
+
 networks:
   app-network:
     driver: bridge
   db:
 
 volumes:
-  mysql-data: # Définition du volume pour persister les données MySQL
+  mysql-data:
+  db_data:
