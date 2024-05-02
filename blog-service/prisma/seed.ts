@@ -25,5 +25,4 @@ async function main() {
 }
 
 main()
-    .catch((e) => console.log(e))
-    .finally(() => prisma.$disconect());
+    .catch((e) => console.log(e));

@@ -17,10 +17,11 @@ ENV DATABASE_URL "postgresql://admin:root@dbpostgres:5432/blogdb"
 
 
 # Creates a "dist" folder with the production build
-RUN npm run build
+# RUN npm run build
 
-# RUN npx prisma generate
+RUN npx prisma generate
 # RUN npx prisma migrate dev --name init
+# RUN npx prisma migrate dev --name=init
 # RUN npm run db:seed
 
 # Start the server using the production build
