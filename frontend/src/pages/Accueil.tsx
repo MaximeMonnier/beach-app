@@ -4,6 +4,7 @@ import CardRugby from "../components/Card/CardRugby";
 import CardTennis from "../components/Card/CardTennis";
 import CardVolley from "../components/Card/CardVolley";
 import imgAccueil from "../assets/img_accueil.png";
+import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
 
 const Accueil: React.FC = () => {
@@ -56,15 +57,20 @@ const Accueil: React.FC = () => {
         </div>
       </div>
 
-      <div className="w-full mt-12 h-2 bg-bg-1 dark:bg-bg-2"></div>
+      <div className="p-2">
+        <div className="w-full mt-12 h-2 bg-bg-1 dark:bg-bg-2 rounded-xl"></div>
+      </div>
 
       <div
         id="section1"
-        className="w-full mt-2 grid grid-cols-1 sm:grid-cols-3 gap-4"
+        className="w-full mt-2 grid grid-cols-1 sm:grid-cols-3 gap-4 p-2"
       >
         <CardRugby />
         <CardTennis />
         <CardVolley />
+      </div>
+      <div className="p-2">
+        <Footer />
       </div>
     </div>
   );
