@@ -134,6 +134,7 @@ const Blog: React.FC = () => {
             content={article.content}
             createdAt={article.createdAt}
             onDelete={() => deleteArticle(article.id)}
+            onUpdate={(updatedArticle) => updateArticle(article.id, updatedArticle)}
           />
         ))}
         {/* Open the modal using document.getElementById('ID').showModal() method */}

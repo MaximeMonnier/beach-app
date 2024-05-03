@@ -7,7 +7,7 @@ interface BlogcardProps {
   content: string;
   createdAt: string;
   onDelete: (id: string) => void;
-  onUpdate: (id: string, content: string) => void;
+  onUpdate: (updatedArticle: Omit<BlogcardProps, "id" | "createdAt">) => void;
 }
 
 const Blogcard: React.FC<BlogcardProps> = ({
@@ -45,9 +45,18 @@ const Blogcard: React.FC<BlogcardProps> = ({
   };
 
   const handleUpdate = () => {
-    onUpdate(id, editedContent);
-    setTransform(false);
-  };
+    onUpdate({
+        title: editedTitle,
+        author: author,
+        content: editedContent,
+        onDelete: function (_id: string): void {
+            throw new Error("Function not implemented.");
+        },
+        onUpdate: function (_updatedArticle: Omit<BlogcardProps, "id" | "createdAt">): void {
+            throw new Error("Function not implemented.");
+        }
+    });
+};
 
   return (
     <>
