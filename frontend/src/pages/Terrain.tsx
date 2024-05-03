@@ -20,13 +20,6 @@ function Terrain({}: Props) {
           <NavBar />
         </div>
         <div className="w-full flex-grow flex flex-col sm:flex-row justify-between items-center gap-2 py-2">
-          {/* <div className="w-full sm:w-1/6 h-full p-2 text-color-3 bg-bg-1 flex flex-col justify-between rounded-xl dark:text-color-1 dark:bg-bg-2">
-            <h2>Méteo</h2>
-            <h2>Ville</h2>
-            <h2>Date</h2>
-            <h2>Jour</h2>
-            <h2>Océan</h2>
-          </div> */}
           <div className="w-full sm:w-4/6 h-full rounded-xl flex flex-col justify-between">
             <div className="w-full h-2/3 sm:h-full border border-red-600 flex items-center px-4">
               <TerrainComponent />
