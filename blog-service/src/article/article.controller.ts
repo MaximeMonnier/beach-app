@@ -10,9 +10,7 @@ import {
 import { ArticleService } from './article.service';
 import { CreateArticleDto } from './dto/create.dto';
 import { UpdateArticleDto } from './dto/update.dto';
-import { Article } from '@prisma/client'; 
-
-
+import { Article } from '@prisma/client';
 
 @Controller('article')
 export class ArticleController {
@@ -29,22 +27,19 @@ export class ArticleController {
   }
 
   @Post('/create')
-  public async create(
-    @Body() articleDto: CreateArticleDto,
-  ): Promise<Article> {
+  public async create(@Body() articleDto: CreateArticleDto): Promise<Article> {
     return this.articleService.create(articleDto);
   }
 
-  @Put('id')
+  @Put(':id')
   public async update(
     @Param('id') id: string,
     @Body() articleDto: UpdateArticleDto,
   ): Promise<Article> {
     return this.articleService.update(id, articleDto);
-
   }
 
-  @Delete('id')
+  @Delete(':id')
   public async delete(@Param('id') id: string): Promise<Article> {
     return this.articleService.delete(id);
   }

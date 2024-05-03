@@ -1,5 +1,3 @@
-
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
 
@@ -8,8 +6,10 @@ import RegisterPage from "./pages/RegisterPage";
 import ConnexionPage from "./pages/ConnexionPage";
 import Accueil from "./pages/Accueil";
 
-//middleware
+//Middleware
 import ProtectedRoute from "./middleware/ProtectedRoute";
+
+// Pages
 import Terrain from "./pages/Terrain";
 import LeuActu from "./pages/LeuActu";
 import Association from "./pages/Association";
