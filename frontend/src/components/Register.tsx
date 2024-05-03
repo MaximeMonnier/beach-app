@@ -17,6 +17,7 @@ function Register() {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    
     e.preventDefault();
     setIsSubmitting(true);
     setErrors({});
