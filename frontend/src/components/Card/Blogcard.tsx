@@ -19,6 +19,8 @@ const Blogcard: React.FC<BlogcardProps> = ({
   onDelete,
   onUpdate,
 }) => {
+
+  
   const [transform, setTransform] = useState<boolean>(false);
   const [editedContent, setEditedContent] = useState<string>(content);
   const [editedTitle, setEditedTitle] = useState<string>(title);
@@ -131,12 +133,12 @@ const Blogcard: React.FC<BlogcardProps> = ({
             <p>{content}</p>
           )}
         </div>
-        <div>
-          <button className="btn">
-            Button
+        <div className="mt-2">
+          <button className="btn btn-xs bg-bg-6 pt-0 text-color-1 border-none text-xs hover:bg-bg-3 dark:bg-bg-3 dark:hover:bg-bg-1 dark:hover:text-color-3">
+            Jaime
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
+              className="h-4 w-4"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
