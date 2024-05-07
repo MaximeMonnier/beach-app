@@ -23,6 +23,7 @@ const Accueil: React.FC = () => {
 
   const logout = async () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("userInfo");
 
     await fetch("/api/logout", {
       method: "POST",

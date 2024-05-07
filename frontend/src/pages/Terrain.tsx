@@ -4,13 +4,59 @@ import CardTennis from "../components/Card/CardTennis";
 import CardVolley from "../components/Card/CardVolley";
 import FullCalendar from "../components/FullCalendar";
 import TerrainComponent from "../components/TerrainComponent";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import sable from "../assets/sable/s1.jpg";
+import FormReservation from "../components/Form/FormReservation";
 
-type Props = {};
+interface TerrainProps {
+  id: number;
+  terrain_name: string;
+  terrain_type_id: number;
+  first_name: string;
+  familly_name: string;
+  userinfo: { id: number; username: string }; 
+}
 
-function Terrain({}: Props) {
+const Terrain: React.FC = () => {
+  const [Terrains, setTerrain] = useState<TerrainProps[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [userInfo, setUserInfo] = useState<TerrainProps[]>([]);
+
+
+  useEffect(() => {
+    const storedUserInfo = localStorage.getItem("userInfo");
+    if (storedUserInfo) {
+      setUserInfo(JSON.parse(storedUserInfo));
+    }
+    fetchTerrain();
+  }, []);
+  
+
+  const fetchTerrain = async () => {
+    setLoading(true);
+    try {
+      axios.defaults.withCredentials = true;
+      const response = await axios.get<TerrainProps[]>(
+        "http://localhost:8000/api/terrain"
+      );
+      setTerrain(response.data);
+      //   console.log(response.data);
+
+      setLoading(false);
+    } catch (error) {
+      console.error("Impossible de récupérer les terrains");
+    }
+  };
+
   const openModal = () => {
     const modal = document.getElementById("my_modal_1") as HTMLDialogElement;
     modal.showModal();
+  };
+
+  const closeModal = () => {
+    const modal = document.getElementById("my_modal_1") as HTMLDialogElement;
+    modal.close();
   };
 
   return (
@@ -21,10 +67,21 @@ function Terrain({}: Props) {
         </div>
         <div className="w-full flex-grow flex flex-col sm:flex-row justify-between items-center gap-2 py-2">
           <div className="w-full sm:w-4/6 h-full rounded-xl flex flex-col justify-between">
-            <div className="w-full h-2/3 sm:h-full border border-red-600 flex items-center px-4">
-              <TerrainComponent />
+            <div
+              className="w-full h-2/3 sm:h-full border border-red-600 flex items-center justify-between px-4 gap-16 flex-wrap"
+              style={{ backgroundImage: `url(${sable})` }}
+            >
+              {Terrains.map((Terrain) => (
+                <TerrainComponent
+                  key={Terrain.id}
+                  id={Terrain.id}
+                  terrain_name={Terrain.terrain_name}
+                  terrain_type_id={Terrain.terrain_type_id}
+                />
+              ))}
             </div>
           </div>
+
           <div className="w-full sm:w-2/6 h-full flex-grow flex flex-col justify-around items-start gap-2">
             <div className="w-full bg-bg-1 rounded-xl text-color-3 flex flex-col justify-between p-2 dark:text-color-1 dark:bg-bg-2">
               <FullCalendar />
@@ -32,22 +89,29 @@ function Terrain({}: Props) {
             <div className="w-full h-full bg-bg-1 rounded-xl text-color-3 flex flex-col justify-between p-2 dark:text-color-1 dark:bg-bg-2">
               <div className="w-full bg-bg-3 rounded-xl h-10 flex items-center">
                 {/* Open the modal using the showModal() method */}
-                <button className="btn" onClick={openModal}>
-                  Open Modal
+                <button
+                  className="btn btn-sm bg-bg-2 text-color-1 px-2 rounded-xl hover:bg-bg-1 hover:text-color-3 dark:bg-bg-1 dark:text-color-3 dark:hover:bg-bg-2 dark:hover:text-color-1"
+                  onClick={openModal}
+                >
+                  Réserver
                 </button>
 
                 <dialog id="my_modal_1" className="modal">
-                  <div className="modal-box">
-                    <h3 className="font-bold text-lg">Hello!</h3>
-                    <p className="py-4">
-                      Press ESC key or click the button below to close
-                    </p>
-                    <div className="modal-action">
-                      <form method="dialog">
-                        {/* If there is a button in the form, it will close the modal */}
-                        <button className="btn">Close</button>
-                      </form>
+                  <div className="modal-box bg-bg-1 dark:bg-bg-3">
+                    <div className="w-full flex justify-between items-center">
+                      <h3 className="font-bold text-lg mb-4">
+                        Ajouter un article
+                      </h3>
+                      <button
+                        type="button"
+                        className="btn hover:bg-red-600 text-color-1"
+                        onClick={closeModal}
+                      >
+                        Close
+                      </button>
                     </div>
+
+                    <FormReservation terrains={Terrains} userinfo={userInfo} closemodale={closeModal}/>
                   </div>
                 </dialog>
                 <button className="bg-bg-2 text-color-1 px-2 rounded-xl hover:bg-bg-1 hover:text-color-3 dark:bg-bg-1 dark:text-color-3 dark:hover:bg-bg-2 dark:hover:text-color-1">
@@ -88,6 +152,6 @@ function Terrain({}: Props) {
       </div>
     </div>
   );
-}
+};
 
 export default Terrain;

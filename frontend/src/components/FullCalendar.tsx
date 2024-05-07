@@ -37,7 +37,7 @@ const CalendarComponent: React.FC = () => {
         weekends={true}
         height="400px"
         events={[
-          { title: "event 1", date: "2024-04-22" },
+          { title: "Reserver de 10h à midi", date: "2024-04-22" },
           { title: "event 2", date: "2024-04-23" },
         ]}
       />

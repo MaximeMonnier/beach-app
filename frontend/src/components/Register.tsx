@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { getCsrfToken } from "../utils/getCsrfToken";
 import { Link } from "react-router-dom";
 
-function Register() {
+const Register: React.FC = () => {
   const navigate = useNavigate();
   const [firstName, setFirstName] = useState<string>("");
   const [familyName, setFamilyName] = useState<string>("");
