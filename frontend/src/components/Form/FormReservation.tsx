@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { getCsrfToken } from "../../utils/getCsrfToken";
 import axios from "axios";
 
@@ -99,7 +98,7 @@ const FormReservation: React.FC<FormReservationProps> = ({
         </select>
         <label htmlFor="date_start">Date de début</label>
         <input
-          type="date"
+          type="datetime-local"
           id="date_start"
           value={dateStart}
           onChange={(e) => setDateStart(e.target.value)}
@@ -107,7 +106,7 @@ const FormReservation: React.FC<FormReservationProps> = ({
         />
         <label htmlFor="date_fin">Date de fin</label>
         <input
-          type="date"
+          type="datetime-local"
           id="date_end"
           value={dateFin}
           onChange={(e) => setDateFin(e.target.value)}
