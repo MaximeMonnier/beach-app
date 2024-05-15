@@ -15,14 +15,16 @@ interface TerrainProps {
   terrain_type_id: number;
   first_name: string;
   familly_name: string;
-  userinfo: { id: number; username: string }; 
+  userinfo: { id: number; username: string };
 }
 
 const Terrain: React.FC = () => {
   const [Terrains, setTerrain] = useState<TerrainProps[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [userInfo, setUserInfo] = useState<TerrainProps[]>([]);
+  const [Display, setDisplay] = useState(false);
 
+  console.log(Display);
 
   useEffect(() => {
     const storedUserInfo = localStorage.getItem("userInfo");
@@ -31,7 +33,10 @@ const Terrain: React.FC = () => {
     }
     fetchTerrain();
   }, []);
-  
+
+  // const DisplayFullCalendar = (_e: any) => {
+  //     document.
+  // }
 
   const fetchTerrain = async () => {
     setLoading(true);
@@ -83,9 +88,26 @@ const Terrain: React.FC = () => {
           </div>
 
           <div className="w-full sm:w-2/6 h-full flex-grow flex flex-col justify-around items-start gap-2">
-            <div className="w-full bg-bg-1 rounded-xl text-color-3 flex flex-col justify-between p-2 dark:text-color-1 dark:bg-bg-2">
-              <FullCalendar />
+            <div className="w-full relative">
+              <div
+                className={`w-full bg-bg-1 rounded-xl text-color-3 flex flex-col justify-between p-2 dark:text-color-1 dark:bg-bg-2 transition-opacity duration-300 ${
+                  Display ? "opacity-20" : "opacity-100"
+                }`}
+                onMouseEnter={() => setDisplay(true)}
+                onMouseLeave={() => setDisplay(false)}
+              >
+                <FullCalendar />
+              </div>
+              {Display && (
+                <div
+                  className="bg-red-800 text-white text-center absolute top-52 right-0 z-10 w-full"
+                  onMouseEnter={() => setDisplay(true)}
+                >
+                  mette un boutton en bas a droit qui declanche la modal avec le calendrier fullpage, enlevr le flootage et faire afficher seulement le btn 
+                </div>
+              )}
             </div>
+
             <div className="w-full h-full bg-bg-1 rounded-xl text-color-3 flex flex-col justify-between p-2 dark:text-color-1 dark:bg-bg-2">
               <div className="w-full bg-bg-3 rounded-xl h-10 flex items-center">
                 {/* Open the modal using the showModal() method */}
@@ -111,7 +133,11 @@ const Terrain: React.FC = () => {
                       </button>
                     </div>
 
-                    <FormReservation terrains={Terrains} userinfo={userInfo} closemodale={closeModal}/>
+                    <FormReservation
+                      terrains={Terrains}
+                      userinfo={userInfo}
+                      closemodale={closeModal}
+                    />
                   </div>
                 </dialog>
                 <button className="bg-bg-2 text-color-1 px-2 rounded-xl hover:bg-bg-1 hover:text-color-3 dark:bg-bg-1 dark:text-color-3 dark:hover:bg-bg-2 dark:hover:text-color-1">

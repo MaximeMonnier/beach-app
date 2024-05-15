@@ -4,27 +4,22 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import axios from "axios";
+import frLocale from "@fullcalendar/core/locales/fr";
 
-interface calendarProps {
+interface CalendarProps {
   id: number;
   users_id: string;
   terrain_id: number;
-  date_start: string
+  date_start: string;
   date_end: string;
 }
 
-// interface events {
-//   title: string;
-//   start: Date;
-//   end: Date;
-// }
-
-const CalendarComponent: React.FC<calendarProps> = () => {
+const CalendarComponent: React.FC = () => {
   const calendarStyle = {
     width: "100%",
     margin: "auto",
   };
-  const [calendar, setCalendar] = useState<calendarProps[]>([]);
+  const [calendar, setCalendar] = useState<CalendarProps[]>([]);
 
   useEffect(() => {
     fetchCalendar();
@@ -33,15 +28,14 @@ const CalendarComponent: React.FC<calendarProps> = () => {
   const fetchCalendar = async () => {
     try {
       axios.defaults.withCredentials = true;
-      const response = await axios.get<calendarProps[]>(
+      const response = await axios.get<CalendarProps[]>(
         "http://localhost:8000/api/calendrier"
       );
 
       console.log(response.data);
-      
 
       const events = response.data.map((item) => ({
-        title: `Terrain ${item.terrain_id} réservé de ${item.date_start} à ${item.date_end}`,
+        title: `Terrain ${item.terrain_id} réservé`,
         start: item.date_start,
         end: item.date_end,
       }));
@@ -49,7 +43,7 @@ const CalendarComponent: React.FC<calendarProps> = () => {
       setCalendar(events);
       console.log(events);
     } catch (error) {
-      console.log("Impossible d'afficher les reservations" + error);
+      console.log("Impossible d'afficher les réservations : " + error);
     }
   };
 
@@ -58,6 +52,7 @@ const CalendarComponent: React.FC<calendarProps> = () => {
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         initialView="dayGridMonth"
+        locale={frLocale}
         headerToolbar={{
           left: "prev,next today",
           center: "title",
@@ -71,7 +66,6 @@ const CalendarComponent: React.FC<calendarProps> = () => {
             },
           },
         }}
-        // Application des styles via la prop style
         editable={true}
         selectable={true}
         selectMirror={true}
@@ -79,6 +73,12 @@ const CalendarComponent: React.FC<calendarProps> = () => {
         weekends={true}
         height="400px"
         events={calendar}
+        eventTimeFormat={{
+          hour: '2-digit',
+          minute: '2-digit',
+          meridiem: false,
+        }}
+        displayEventEnd={true}
       />
     </div>
   );
