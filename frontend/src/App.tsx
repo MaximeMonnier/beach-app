@@ -17,12 +17,14 @@ import Evenement from "./pages/Evenement";
 import Blog from "./pages/Blog";
 import Meteo from "./pages/Meteo";
 import Page404 from "./pages/Page404";
+import FullCalendar from "./pages/FullCalendarPage";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<ConnexionPage />} />
+        <Route path="/fullcalendar" element={<FullCalendar />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route
           path="/accueil"

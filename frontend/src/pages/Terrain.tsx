@@ -8,6 +8,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import sable from "../assets/sable/s1.jpg";
 import FormReservation from "../components/Form/FormReservation";
+import { Link } from "react-router-dom";
 
 interface TerrainProps {
   id: number;
@@ -90,9 +91,7 @@ const Terrain: React.FC = () => {
           <div className="w-full sm:w-2/6 h-full flex-grow flex flex-col justify-around items-start gap-2">
             <div className="w-full relative">
               <div
-                className={`w-full bg-bg-1 rounded-xl text-color-3 flex flex-col justify-between p-2 dark:text-color-1 dark:bg-bg-2 transition-opacity duration-300 ${
-                  Display ? "opacity-20" : "opacity-100"
-                }`}
+                className="w-full bg-bg-1 rounded-xl text-color-3 flex flex-col justify-between p-2 dark:text-color-1 dark:bg-bg-2"
                 onMouseEnter={() => setDisplay(true)}
                 onMouseLeave={() => setDisplay(false)}
               >
@@ -100,10 +99,14 @@ const Terrain: React.FC = () => {
               </div>
               {Display && (
                 <div
-                  className="bg-red-800 text-white text-center absolute top-52 right-0 z-10 w-full"
+                  className="text-grey text-center absolute top-80 left-40 z-10 w-full text-xl"
                   onMouseEnter={() => setDisplay(true)}
                 >
-                  mette un boutton en bas a droit qui declanche la modal avec le calendrier fullpage, enlevr le flootage et faire afficher seulement le btn 
+                  <span className="cursor-ponter">
+                    <Link to="/fullcalendar">
+                      <i className="fa-solid fa-display"></i>
+                    </Link>
+                  </span>
                 </div>
               )}
             </div>
@@ -160,6 +163,8 @@ const Terrain: React.FC = () => {
                 </button>
               </div>
               <h2>Information</h2>
+              <p>idee cette partie doit etre dynamique pour faire afficher differnte info par exmple si je clique sur météo cela affiche la meteo comme un changement de page mais uniquement sur cette partie pareil pour detail ou autre</p>
+              <p>attention ce code nique le full-screen</p>
               <h2>Terrain dispo</h2>
               <h2>Participant</h2>
             </div>
