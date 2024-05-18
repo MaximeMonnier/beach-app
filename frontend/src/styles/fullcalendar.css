@@ -1,0 +1,28 @@
+.custom-toolbar-title {
+  color: #017358; 
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+}
+
+.custom-toolbar-date {
+  margin-left: 10px;
+  color: #e97451; /* Couleur du jour ajouté */
+  font-size: 1rem; /* Taille de police pour le jour */
+}
+
+.custom-toolbar {
+  @apply bg-green-600 text-white; /* Utiliser Tailwind CSS pour la barre d'outils */
+}
+
+.custom-daygrid-day {
+  @apply border-color-3; /* Utiliser Tailwind CSS pour les jours */
+}
+
+.custom-daygrid-event {
+  @apply bg-red-800 text-white; /* Utiliser Tailwind CSS pour les événements */
+}
+
+.custom-day-today {
+  @apply bg-red-300; /* Utiliser Tailwind CSS pour le jour actuel */
+}

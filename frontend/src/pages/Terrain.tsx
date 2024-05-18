@@ -2,7 +2,7 @@ import NavBar from "../components/NavBar";
 import CardRugby from "../components/Card/CardRugby";
 import CardTennis from "../components/Card/CardTennis";
 import CardVolley from "../components/Card/CardVolley";
-import FullCalendar from "../components/FullCalendar";
+import FullCalendar from "../components/calendar/FullCalendarTerrain";
 import TerrainComponent from "../components/TerrainComponent";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
@@ -99,7 +99,7 @@ const Terrain: React.FC = () => {
               </div>
               {Display && (
                 <div
-                  className="text-grey text-center absolute top-80 left-40 z-10 w-full text-xl"
+                  className="text-grey text-center absolute top-96 right-48 z-10 w-full text-2xl"
                   onMouseEnter={() => setDisplay(true)}
                 >
                   <span className="cursor-ponter">
